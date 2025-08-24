@@ -2,5 +2,44 @@
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "feedbackSurveyState": {
     "lastShownTime": 1754134298580
+  },
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:docs.anthropic.com)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(mvn test:*)",
+      "Bash(mkdir:*)",
+      "Bash(comm:*)",
+      "Bash(sed:*)",
+      "Bash(sort:*)"
+    ],
+    "deny": [
+      "Read(.git)",
+      "Read(batches-content)",
+      "Read(config)",
+      "Read(credentials)",
+      "Read(docker)",
+      "Read(designs)",
+      "Read(email_templates)",
+      "Read(game_skins)",
+      "Read(mongodb)",
+      "Read(scripts)",
+      "Read(ssl)",
+      "Read(**/*.log)",
+      "Read(**/*.sh)",
+      "Read(**/node_modules)",
+      "Read(**/target)",
+      "Read(**/.idea)",
+      "Read(**/.husky)",
+      "Read(**/.cursor)",
+      "Read(**/.next)",
+      "Read(**/.vscode)",
+      "Read(**/dist)",
+      "Read(**/build)",
+      "Read(**/.bin)",
+      "Read(**/conf-whatnow)"
+    ],
+    "defaultMode": "acceptEdits"
   }
 }
