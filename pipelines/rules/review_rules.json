@@ -1,0 +1,112 @@
+{
+  "simplicity": {
+    "max_function_length": 20,
+    "max_function_parameters": 4,
+    "max_nesting_depth": 3,
+    "max_cyclomatic_complexity": 5,
+    "prefer_explicit_over_implicit": true,
+    "avoid_clever_code": true,
+    "single_responsibility_principle": true,
+    "description": "Rules focused on keeping code simple and understandable"
+  },
+  "readability": {
+    "descriptive_variable_names": true,
+    "clear_function_names": true,
+    "avoid_abbreviations": true,
+    "meaningful_comments": true,
+    "documentation_required": true,
+    "consistent_naming_convention": "snake_case",
+    "whitespace_for_clarity": true,
+    "logical_code_organization": true,
+    "description": "Rules for improving code readability and comprehension"
+  },
+  "code_quality": {
+    "max_file_length": 300,
+    "type_hints_required": true,
+    "early_returns_preferred": true,
+    "avoid_deep_inheritance": true,
+    "favor_composition_over_inheritance": true,
+    "eliminate_code_duplication": true,
+    "proper_exception_handling": true,
+    "description": "General code quality standards and practices"
+  },
+  "security": {
+    "check_sql_injection": true,
+    "check_xss_vulnerabilities": true,
+    "validate_input_sanitization": true,
+    "check_secrets_exposure": true,
+    "validate_authentication": true,
+    "check_authorization": true,
+    "secure_data_handling": true,
+    "description": "Security-focused review criteria"
+  },
+  "performance": {
+    "flag_obvious_inefficiencies": true,
+    "prefer_readability_over_micro_optimizations": true,
+    "suggest_major_optimizations_only": true,
+    "avoid_premature_optimization": true,
+    "memory_usage_awareness": true,
+    "database_query_efficiency": true,
+    "description": "Performance considerations and optimization guidelines"
+  },
+  "standards": {
+    "pep8_compliance": true,
+    "consistent_formatting": true,
+    "proper_error_handling": true,
+    "minimal_logging": true,
+    "prefer_standard_library": true,
+    "avoid_unnecessary_dependencies": true,
+    "version_control_best_practices": true,
+    "description": "Coding standards and best practices compliance"
+  },
+  "review_priorities": [
+    "Is the code easy to understand?",
+    "Can a junior developer read and modify this?",
+    "Is each function doing one thing well?",
+    "Are variable and function names self-documenting?",
+    "Is the logic flow clear and straightforward?",
+    "Are there any unnecessarily complex patterns?",
+    "Can this be simplified without losing functionality?",
+    "Are there any security vulnerabilities?",
+    "Is error handling appropriate?",
+    "Is the code properly documented?"
+  ],
+  "scoring": {
+    "excellent": {
+      "min_score": 90,
+      "description": "Code meets all standards with minimal issues"
+    },
+    "good": {
+      "min_score": 75,
+      "description": "Code is solid with minor improvements needed"
+    },
+    "acceptable": {
+      "min_score": 60,
+      "description": "Code works but has several areas for improvement"
+    },
+    "needs_improvement": {
+      "min_score": 40,
+      "description": "Code has significant issues that should be addressed"
+    },
+    "unacceptable": {
+      "min_score": 0,
+      "description": "Code has critical issues and should not be deployed"
+    }
+  },
+  "violation_weights": {
+    "security": 10,
+    "functionality": 8,
+    "readability": 6,
+    "performance": 4,
+    "style": 2
+  },
+  "auto_fix_suggestions": {
+    "enabled": true,
+    "categories": [
+      "formatting",
+      "simple_refactoring",
+      "documentation",
+      "variable_naming"
+    ]
+  }
+}

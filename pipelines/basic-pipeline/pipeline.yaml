@@ -1,0 +1,80 @@
+name: "three_agent_pipeline"
+version: "1.0.0"
+description: "Multi-agent pipeline with planning, execution, and review stages"
+
+agents:
+  planner:
+    script: "agents/planner.py"
+    model: "claude-sonnet-4-20250514"
+    temperature: 0.3
+    max_tokens: 4000
+    system_prompt: |
+      You are a planning agent. Break down tasks into executable steps.
+      Create detailed, structured plans with clear deliverables.
+
+  executor:
+    script: "agents/executor.py"
+    model: "claude-sonnet-4-20250514"
+    temperature: 0.1
+    max_tokens: 8000
+    system_prompt: |
+      You are an execution agent. Follow the provided plan precisely.
+      Write clean, functional code according to specifications.
+
+  reviewer:
+    script: "agents/reviewer.py"
+    model: "claude-sonnet-4-20250514"
+    temperature: 0.2
+    max_tokens: 4000
+    system_prompt: |
+      You are a code review agent. Assess code quality, security, and best practices.
+      Provide constructive feedback and improvement suggestions.
+
+workflow:
+  - name: "planning"
+    agent: "planner"
+    inputs: ["task_description"]
+    outputs: ["execution_plan.json"]
+    
+  - name: "execution"
+    agent: "executor"
+    inputs: ["execution_plan.json"]
+    outputs: ["code_output/", "implementation_log.md"]
+    depends_on: ["planning"]
+    
+  - name: "review"
+    agent: "reviewer"
+    inputs: ["code_output/", "rules/review_rules.json"]
+    outputs: ["review_report.json", "feedback.md"]
+    depends_on: ["execution"]
+
+settings:
+  retry_attempts: 3
+  timeout_minutes: 60
+  save_intermediate_results: true
+  output_directory: "./pipeline_output"
+  log_level: "INFO"
+  parallel_execution: false
+  
+communication:
+  message_format: "json"
+  error_handling: "retry_with_fallback"
+  progress_tracking: true
+  
+integration:
+  claude_code_compatible: true
+  git_integration: true
+  test_execution: true
+  
+memory:
+  project_id: "default"
+  short_term_size: 1000
+  working_memory_size: 10000
+  db_path: "~/.claude/pipelines/memory/pipeline_memory.db"
+  learning_enabled: true
+  pattern_matching_threshold: 0.3
+  
+metadata:
+  created_date: "2025-08-26"
+  author: "Claude Code Pipeline System"
+  tags: ["multi-agent", "pipeline", "code-generation", "review", "memory-enhanced"]
